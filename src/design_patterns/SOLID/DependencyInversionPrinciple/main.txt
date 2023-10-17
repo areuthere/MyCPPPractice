@@ -1,0 +1,24 @@
+// #define FMT_HEADER_ONLY // may need this line
+
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+
+#include "DependencyInversionPrinciple/FollowingDIP.hpp"
+
+using namespace following::principles;
+
+int main()
+{
+  Person parent{"John"};
+  Person child1{"Chris"};
+  Person child2{"Matt"};
+
+  Relationships relationships;
+  relationships.add_parent_and_child(parent, child1);
+  relationships.add_parent_and_child(parent, child2);
+
+  Research _(relationships);
+
+  return 0;
+}

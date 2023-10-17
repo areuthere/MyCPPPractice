@@ -1,5 +1,3 @@
-// #define FMT_HEADER_ONLY // may need this line
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -7,13 +5,13 @@
 #include <string>
 using namespace std;
 
-#include "BuilderPattern/BuilderFacets/Person.hpp"
-#include "BuilderPattern/BuilderFacets/PersonBuilder.hpp"
-#include "BuilderPattern/BuilderFacets/PersonAddressBuilder.hpp"
-#include "BuilderPattern/BuilderFacets/PersonJobBuilder.hpp"
+#include "Person.hpp"
+#include "PersonBuilder.hpp"
+#include "PersonAddressBuilder.hpp"
+#include "PersonJobBuilder.hpp"
 using namespace following::patterns;
 
-int main()
+int main__()
 {
   Person p = Person::create()
     .lives().at("123 London Road").with_postcode("SW1 1GB").in("London")

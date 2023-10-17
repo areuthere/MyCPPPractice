@@ -20,7 +20,7 @@ option(ENABLE_WARNINGS "Enable to add warnings to a target." ON)
 option(ENABLE_WARNINGS_AS_ERRORS "Enable to treat warnings as errors." OFF)
 
 option(ENABLE_TESTING "Enable a Unit Testing build." ON)
-option(ENABLE_COVERAGE "Enable a Code Coverage build." OFF)
+option(ENABLE_COVERAGE "Enable a Code Coverage build." ON)
 
 option(ENABLE_CLANG_TIDY "Enable to add clang tidy." OFF)
 
@@ -36,6 +36,7 @@ option(ENABLE_LTO "Enable to add Link Time Optimization." ON)
 
 # Project/Library Names
 set(LIBRARY_NAME "lib")
+set(DESIGN_PATTERNS_LIBRARY_NAME "my_design_patterns")
 set(UNIT_TEST_NAME "unit_tests")
 set(EXECUTABLE_NAME "main")
 

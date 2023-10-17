@@ -1,0 +1,27 @@
+// #define FMT_HEADER_ONLY // may need this line
+
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+
+#include "LiskovSubstitutionPrinciple/NotFollowingLSP.hpp"
+#include "LiskovSubstitutionPrinciple/FollowingLSP.hpp"
+
+using namespace following::principles;
+
+int main(int argc, char **argv)
+{
+    // Rectangle r{5, 5};
+    // process(r);
+
+    // Square s{5};
+    // process(s);
+
+    RectangleFactory rf;
+    Rectangle r = rf.create_rectangle(5,5);
+    process(r);
+    Rectangle sq = rf.create_square(5);
+    process(sq);
+    getchar();
+    return 0;
+}

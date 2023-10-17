@@ -1,0 +1,42 @@
+// #define FMT_HEADER_ONLY // may need this line
+
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+
+#include "OpenClosedPrinciple/NotFollowingOCP.hpp"
+#include "SingleResponsibilityPrinciple/NotFollowingSRP.hpp"
+
+#include "OpenClosedPrinciple/FollowingOCP.hpp"
+#include "SingleResponsibilityPrinciple/FollowingSRP.hpp"
+
+
+using namespace following::principles;
+
+int main(int argc, char **argv)
+{
+
+    Product product1{"HeavyBall", Product::Size::small, Product::Color::green, Product::Weight::heavy};
+    Product product2{"Bucket", Product::Size::medium, Product::Color::orange, Product::Weight::medium};
+    Product product3{"Balloon", Product::Size::large, Product::Color::red, Product::Weight::light};
+
+    ProductFilter::Items products{&product1, &product2, &product3};
+
+    ColorSpecification colorSpec(Product::Color::green);
+    SizeSpecification sizeSpec(Product::Size::small);
+    AndSpecification<Product> colorAndSizeSpec(colorSpec, sizeSpec);
+    ProductFilter filter;
+    ProductFilter::Items new_items = filter.filter(products, colorAndSizeSpec);
+    for (auto item : new_items)
+    {
+        cout << item->m_name << endl;
+    }
+
+    ProductFilter::Items new_items2 =
+        filter.filter(products, ColorSpecification(Product::Color::orange) && SizeSpecification(Product::Size::medium));
+    for (auto item : new_items2)
+    {
+        cout << item->m_name << endl;
+    }
+    return 0;
+}
