@@ -10,11 +10,13 @@ namespace principles
 {
 class Notes
 {
-    public:
+public:
     string m_title;
     vector<string> m_enteries;
 
-    Notes(const std::string& title):m_title(title),m_enteries{}{}
+    Notes(const std::string &title) : m_title(title), m_enteries{}
+    {
+    }
     void add_entry(const string &entry)
     {
         static int i = 1;

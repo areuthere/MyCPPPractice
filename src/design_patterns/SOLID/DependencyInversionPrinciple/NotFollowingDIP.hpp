@@ -9,14 +9,14 @@ namespace principles
 {
 enum class Relationship
 {
-  parent,
-  child,
-  sibling
+    parent,
+    child,
+    sibling
 };
 
 struct Person
 {
-  string name;
+    string name;
 };
 
 struct Relationships
@@ -28,7 +28,6 @@ struct Relationships
         relations.push_back({parent, Relationship::parent, child});
         relations.push_back({child, Relationship::child, parent});
     }
-
 };
 
 struct Research // high-level

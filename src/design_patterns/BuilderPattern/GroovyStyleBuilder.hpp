@@ -15,7 +15,7 @@ class Tag
     string str(size_t index) const
     {
         ostringstream ss;
-        ss << string(" ",index) << "<" << name;
+        ss << string(" ", index) << "<" << name;
         for (const auto &att : attributes)
             ss << " " << att.first << "=\"" << att.second << "\"";
         if (children.size() == 0 && text.length() == 0)
@@ -28,11 +28,12 @@ class Tag
             if (text.length())
                 ss << text << std::endl;
             for (const auto &child : children)
-                ss << child.str(index+1);
-            ss << string(" ",index) << "</" << name << ">" << std::endl;
+                ss << child.str(index + 1);
+            ss << string(" ", index) << "</" << name << ">" << std::endl;
         }
         return ss.str();
     }
+
 public:
     string name, text;
     vector<Tag> children;

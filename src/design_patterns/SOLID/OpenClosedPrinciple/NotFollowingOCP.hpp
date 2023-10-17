@@ -1,7 +1,7 @@
 #pragma once
 
-#include <vector>
 #include <string>
+#include <vector>
 using namespace std;
 
 namespace not_following
@@ -29,7 +29,8 @@ public:
         medium,
         heavy
     };
-    Product(string name, Size size, Color color,Weight weight) : m_name(name), m_size(size), m_color(color), m_weight(weight)
+    Product(string name, Size size, Color color, Weight weight)
+        : m_name(name), m_size(size), m_color(color), m_weight(weight)
     {
     }
     string m_name;
@@ -41,33 +42,33 @@ public:
 class ProductFilter
 {
 public:
-    typedef vector<Product*> Items;
-    Items filter_by_color(const Items& products, const Product::Color color)
+    typedef vector<Product *> Items;
+    Items filter_by_color(const Items &products, const Product::Color color)
     {
         Items items;
-        for(auto product : products)
+        for (auto product : products)
         {
-            if(product->m_color == color)
+            if (product->m_color == color)
                 items.push_back(product);
         }
         return items;
     }
-    Items filter_by_size(const Items& products, const Product::Size size)
+    Items filter_by_size(const Items &products, const Product::Size size)
     {
         Items items;
-        for(auto product : products)
+        for (auto product : products)
         {
-            if(product->m_size == size)
+            if (product->m_size == size)
                 items.push_back(product);
         }
         return items;
     }
-    Items filter_by_color_and_size(const Items& products, const Product::Color color, const Product::Size size)
+    Items filter_by_color_and_size(const Items &products, const Product::Color color, const Product::Size size)
     {
         Items items;
-        for(auto product : products)
+        for (auto product : products)
         {
-            if((product->m_size == size) && (product->m_color == color) )
+            if ((product->m_size == size) && (product->m_color == color))
                 items.push_back(product);
         }
         return items;

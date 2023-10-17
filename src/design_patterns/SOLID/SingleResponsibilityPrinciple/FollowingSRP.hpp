@@ -10,10 +10,12 @@ namespace principles
 {
 class Notes
 {
-    public:
+public:
     string m_title;
     vector<string> m_enteries;
-    Notes(const std::string& title):m_title(title),m_enteries{}{}
+    Notes(const std::string &title) : m_title(title), m_enteries{}
+    {
+    }
     void add_entry(const string &entry)
     {
         static int i = 1;
@@ -33,8 +35,8 @@ class Notes
 
 class PersistentStorage
 {
-    public:
-    static void save(Notes notes, const string& filepath)
+public:
+    static void save(Notes notes, const string &filepath)
     {
         ofstream file(filepath, std::ofstream::out);
         file << notes.m_title << endl;
@@ -47,4 +49,4 @@ class PersistentStorage
 };
 
 } // namespace principles
-} // namespace not_following
+} // namespace following

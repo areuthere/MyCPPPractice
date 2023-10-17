@@ -29,7 +29,8 @@ public:
         medium,
         heavy
     };
-    Product(string name, Size size, Color color, Weight weight) : m_name(name), m_size(size), m_color(color), m_weight(weight)
+    Product(string name, Size size, Color color, Weight weight)
+        : m_name(name), m_size(size), m_color(color), m_weight(weight)
     {
     }
     string m_name;
@@ -82,7 +83,7 @@ public:
     }
 };
 
-template<class T>
+template <class T>
 class AndSpecification : public Specification<T>
 {
     const Specification<T> &m_spec1;
@@ -99,16 +100,16 @@ public:
     }
 };
 
-template<class T>
-AndSpecification<T> operator&&(const Specification<T>& spec1, const Specification<T>& spec2)
+template <class T>
+AndSpecification<T> operator&&(const Specification<T> &spec1, const Specification<T> &spec2)
 {
-    return {spec1,spec2};
+    return {spec1, spec2};
 }
 
 class ProductFilter : public Filter<Product>
 {
 public:
-    typedef vector<Product*> Items;
+    typedef vector<Product *> Items;
     Items filter(Items input, const Specification<Product> &specification) override
     {
         Items result;

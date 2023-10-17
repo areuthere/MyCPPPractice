@@ -50,13 +50,12 @@ struct RectangleFactory
     }
 };
 
-void process(Rectangle& r)
+void process(Rectangle &r)
 {
-  int w = r.get_width();
-  r.set_height(10);
+    int w = r.get_width();
+    r.set_height(10);
 
-  std::cout << "expected area = " << (w * 10)
-    << ", got " << r.area() << std::endl;
+    std::cout << "expected area = " << (w * 10) << ", got " << r.area() << std::endl;
 }
 
 } // namespace principles
