@@ -1,0 +1,27 @@
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <memory>
+#include <map>
+#include "DecoratorPattern/StaticDecoratorPattern.hpp"
+using namespace std;
+
+using namespace following::patterns;
+
+int main()
+{
+    Circle circle(23,0,1);
+    ColorShape<Circle> redColorCircle("red",23,0,1);
+    //cout << redColorCircle.draw();
+
+    ColorShape<Circle> blueColorCircle("blue");
+    // BorderShape borderedRedColorCircle(redColorCircle,2);
+    // TransparentShape transparentBorderedRedColorCircle(borderedRedColorCircle,1);
+    // cout << transparentBorderedRedColorCircle.draw();
+    TransparentShape<BorderShape<ColorShape<Circle>>> transparentBorderedRedColorCircle(10,3,"red",12,0,0);
+    cout << transparentBorderedRedColorCircle.draw() << endl;
+    transparentBorderedRedColorCircle.moveCenter(2,5);
+    cout << transparentBorderedRedColorCircle.draw() << endl; //now we can use members of object in decorated objects
+    return 0;
+}

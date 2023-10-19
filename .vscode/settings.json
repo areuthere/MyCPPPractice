@@ -31,7 +31,13 @@
         "*.in": "cpp",
         "ostream": "cpp",
         "sstream": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "iosfwd": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "iostream": "cpp"
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
