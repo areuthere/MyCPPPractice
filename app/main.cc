@@ -1,62 +1,63 @@
-#include "DecoratorPattern/FunctionalDecorator.hpp"
+
+#include <algorithm>
+#include <array>
+#include <future>
 #include <iostream>
 #include <map>
 #include <memory>
 #include <sstream>
 #include <string>
-#include <MyVector.hpp>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+#include <queue>
 using namespace std;
 
-using namespace following::patterns;
 
-class A
+template<typename T>
+class BlockingQueue
 {
-    string str;
-
+private:
+    queue<T> mQueue;
+    size_t mMaxSize;
+    mutex mMutex;
+    condition_variable mConditionVariable;
 public:
-    A()
-    {
-        str = "";
-        cout << "Default constructor is called" << endl;
-    }
-    A(string str) : str(str)
-    {
-        cout << "Normal constructor of A is called" << endl;
-    }
-    A(A const& obj)
-    {
-        this->str = obj.str;
-        cout << "copy constructor for A is called" << endl;
-    }
-    A(A const&& obj)
-    {
-        str = std::move(obj.str);
-        cout << "move constructor for A is called" << endl;
-    }
-    void func(A const &b)
-    {
-        cout << b.str << endl;
-    }
+    BlockingQueue(size_t maxSize):mMaxSize(maxSize){}
+    void push(T const& item);
+    T pop();
+    size_t size();
+    void clear();
 };
 
+template<typename T>
+void BlockingQueue<T>::push(T const& item)
+{
+    unique_lock<mutex> uniqueLock(mMutex);
+    if(mQueue.size()>=mMaxSize)
+    {
+        mConditionVariable.wait(uniqueLock,[this](){return mQueue.size() < mMaxSize;});
+    }
+    mQueue.push(item);
+    mConditionVariable.notify_one();
+}
+
+template<typename T>
+T BlockingQueue<T>::pop()
+{
+    unique_lock<mutex> uniqueLock(mMutex);
+    if(mQueue.empty())
+    {
+        mConditionVariable.wait(uniqueLock,[this](){return !mQueue.empty();});
+    }
+    T val = queue.front();
+    queue.pop();
+    mConditionVariable.notify_one();
+    return val;
+}
 
 int main()
 {
-    //make_logger2([](){cout << "I am a function call" << endl;})();
-    //vector<A> vec;
-    // A a("hello");
-    // //vec.push_back("hello hiiiii"s);
-    // int* p = new int[15]{20};
-    // p[13] = 1;
-    // for(int i=0;i<15;++i)
-    //     cout << p[i]<< endl;
-    // delete[] p;
-    //A *ptr = new A[20];
-    MyVector<int> v(15);
-    cout << v.size() << " " << v.capacity() << endl;
-    v.push_back(10);
-    cout << v.size() << " " << v.capacity() << endl;
-    v.pop_back();
-    cout << v.size() << " " << v.capacity() << endl;
+
     return 0;
 }
